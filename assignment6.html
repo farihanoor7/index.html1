@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Assignment</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .box {
+        background: white;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    button {
+        padding: 8px 15px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    p {
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<h1>JavaScript Assignment</h1>
+
+<div class="box">
+    <h3>1. Print Name</h3>
+    <button onclick="printName()">Show Name</button>
+    <p id="name"></p>
+</div>
+
+<div class="box">
+    <h3>2. Add Two Numbers</h3>
+    <button onclick="addNumbers()">Add Numbers</button>
+    <p id="add"></p>
+</div>
+
+<div class="box">
+    <h3>3. Subtract Two Numbers</h3>
+    <button onclick="subtractNumbers()">Subtract Numbers</button>
+    <p id="subtract"></p>
+</div>
+
+<div class="box">
+    <h3>4. Multiply Two Numbers</h3>
+    <button onclick="multiplyNumbers()">Multiply Numbers</button>
+    <p id="multiply"></p>
+</div>
+
+<div class="box">
+    <h3>5. Divide Two Numbers</h3>
+    <button onclick="divideNumbers()">Divide Numbers</button>
+    <p id="divide"></p>
+</div>
+
+<div class="box">
+    <h3>6. Even or Odd</h3>
+    <button onclick="checkEvenOdd()">Check</button>
+    <p id="evenodd"></p>
+</div>
+
+<div class="box">
+    <h3>7. Voting Eligibility</h3>
+    <button onclick="checkVote()">Check</button>
+    <p id="vote"></p>
+</div>
+
+<div class="box">
+    <h3>8. Positive or Negative</h3>
+    <button onclick="checkPositiveNegative()">Check</button>
+    <p id="positive"></p>
+</div>
+
+<div class="box">
+    <h3>9. Greater Than 100</h3>
+    <button onclick="checkGreater()">Check</button>
+    <p id="greater"></p>
+</div>
+
+<div class="box">
+    <h3>10. Pass or Fail</h3>
+    <button onclick="checkResult()">Check Result</button>
+    <p id="result"></p>
+</div>
+
+<script>
+
+function printName() {
+    document.getElementById("name").innerHTML = "Fariha Noor";
+}
+
+function addNumbers() {
+    let a = Number(prompt("Enter first number:"));
+    let b = Number(prompt("Enter second number:"));
+    document.getElementById("add").innerHTML = "Result: " + (a + b);
+}
+
+function subtractNumbers() {
+    let a = Number(prompt("Enter first number:"));
+    let b = Number(prompt("Enter second number:"));
+    document.getElementById("subtract").innerHTML = "Result: " + (a - b);
+}
+
+function multiplyNumbers() {
+    let a = Number(prompt("Enter first number:"));
+    let b = Number(prompt("Enter second number:"));
+    document.getElementById("multiply").innerHTML = "Result: " + (a * b);
+}
+
+function divideNumbers() {
+    let a = Number(prompt("Enter first number:"));
+    let b = Number(prompt("Enter second number:"));
+    document.getElementById("divide").innerHTML = "Result: " + (a / b);
+}
+
+function checkEvenOdd() {
+    let num = Number(prompt("Enter a number:"));
+    let result = (num % 2 === 0) ? "Even Number" : "Odd Number";
+    document.getElementById("evenodd").innerHTML = result;
+}
+
+function checkVote() {
+    let age = Number(prompt("Enter your age:"));
+    let result = (age >= 18) ? "Eligible to Vote" : "Not Eligible to Vote";
+    document.getElementById("vote").innerHTML = result;
+}
+
+function checkPositiveNegative() {
+    let num = Number(prompt("Enter a number:"));
+    let result = (num >= 0) ? "Positive Number" : "Negative Number";
+    document.getElementById("positive").innerHTML = result;
+}
+
+function checkGreater() {
+    let num = Number(prompt("Enter a number:"));
+    let result = (num > 100) ? "Greater Than 100" : "Not Greater Than 100";
+    document.getElementById("greater").innerHTML = result;
+}
+
+function checkResult() {
+    let marks = Number(prompt("Enter marks:"));
+    let result = (marks >= 40) ? "Passed" : "Failed";
+    document.getElementById("result").innerHTML = result;
+}
+
+</script>
+
+</body>
+</html>
