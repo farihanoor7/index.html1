@@ -3,399 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fariha's Bakery</title>
+<title>Calculator</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    body{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background:#f2f2f2;
+    }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    .calculator{
+        background:#222;
+        padding:20px;
+        border-radius:12px;
+        width:320px;
+        box-shadow:0 0 15px rgba(0,0,0,0.3);
+    }
+
+    #display{
+        width:100%;
+        height:60px;
+        border:none;
+        border-radius:8px;
+        margin-bottom:15px;
+        font-size:28px;
+        text-align:right;
+        padding:10px;
+        background:white;
+    }
+
+    .buttons{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:10px;
+    }
+
+    button{
+        height:60px;
+        border:none;
+        border-radius:8px;
+        font-size:22px;
+        cursor:pointer;
+        background:#444;
+        color:white;
+        transition:0.3s;
+    }
+
+    button:hover{
+        background:#666;
+    }
+
+    .operator{
+        background:orange;
+    }
+
+    .operator:hover{
+        background:darkorange;
+    }
+
+    .equal{
+        background:green;
+    }
+
+    .equal:hover{
+        background:darkgreen;
+    }
+
+    .clear{
+        background:red;
+    }
+
+    .clear:hover{
+        background:darkred;
+    }
+</style>
 
 </head>
-
 <body>
 
-<!-- Header -->
+<div class="calculator">
 
-<header>
+<input type="text" id="display" readonly>
 
-<div class="logo">🍰 Fariha's Bakery</div>
+<div class="buttons">
 
-<nav>
+<button class="clear" onclick="clearDisplay()">C</button>
+<button onclick="deleteLast()">⌫</button>
+<button class="operator" onclick="append('%')">%</button>
+<button class="operator" onclick="append('/')">/</button>
 
-<a href="#home">Home</a>
+<button onclick="append('7')">7</button>
+<button onclick="append('8')">8</button>
+<button onclick="append('9')">9</button>
+<button class="operator" onclick="append('*')">*</button>
 
-<a href="#about">About</a>
+<button onclick="append('4')">4</button>
+<button onclick="append('5')">5</button>
+<button onclick="append('6')">6</button>
+<button class="operator" onclick="append('-')">-</button>
 
-<a href="#menu">Menu</a>
+<button onclick="append('1')">1</button>
+<button onclick="append('2')">2</button>
+<button onclick="append('3')">3</button>
+<button class="operator" onclick="append('+')">+</button>
 
-<a href="#contact">Contact</a>
-
-</nav>
-
-<div class="cart">
-
-<i class="fa-solid fa-cart-shopping"></i>
-
-<span id="count">0</span>
-
-</div>
-
-</header>
-
-<!-- Home -->
-
-<section id="home" class="hero">
-
-<div class="hero-content">
-
-<h1>Freshly Baked With Love ❤️</h1>
-
-<p>Fresh Cakes, Cookies, Cupcakes & Pastries Made Daily.</p>
-
-<a href="#menu" class="btn">Order Now</a>
-
-</div>
-
-</section>
-
-<!-- About -->
-
-<section id="about" class="about">
-
-<h2>About Us</h2>
-
-<p>
-
-Welcome to <b>Fariha's Bakery</b>. We prepare fresh cakes,
-cookies, cupcakes and pastries using premium quality
-ingredients. Every dessert is baked with love and care to
-make your special moments sweeter.
-
-</p>
-
-</section>
-
-<!-- Menu -->
-
-<section id="menu" class="menu">
-
-<h2>Our Menu</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80">
-
-<h3>Chocolate Cake</h3>
-
-<p>Rich chocolate cake with creamy frosting.</p>
-
-<h4>Rs. 2,500</h4>
-
-<button onclick="addToCart()">Add to Cart</button>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80">
-
-<h3>Chocolate Cookies</h3>
-
-<p>Fresh homemade cookies.</p>
-
-<h4>Rs. 450</h4>
-
-<button onclick="addToCart()">Add to Cart</button>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=600&q=80">
-
-<h3>Cupcakes</h3>
-
-<p>Soft vanilla cupcakes.</p>
-
-<h4>Rs. 600</h4>
-
-<button onclick="addToCart()">Add to Cart</button>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=600&q=80">
-
-<h3>French Pastries</h3>
-
-<p>Fresh buttery pastries.</p>
-
-<h4>Rs. 650</h4>
-
-<button onclick="addToCart()">Add to Cart</button>
+<button onclick="append('0')">0</button>
+<button onclick="append('.')">.</button>
+<button class="equal" onclick="calculate()">=</button>
 
 </div>
 
 </div>
 
-</section>
+<script>
 
-<!-- Contact -->
+let display = document.getElementById("display");
 
-<section id="contact" class="contact">
+function append(value){
+    display.value += value;
+}
 
-<h2>Contact Us</h2>
+function clearDisplay(){
+    display.value = "";
+}
 
-<p>📧 <b>Email:</b> farihanoor907@gmail.com</p>
+function deleteLast(){
+    display.value = display.value.slice(0,-1);
+}
 
-<p>📞 <b>Phone:</b> 0310-1003377</p>
+function calculate(){
+    try{
+        display.value = eval(display.value);
+    }
+    catch{
+        display.value = "Error";
+    }
+}
 
-<p>📍 <b>Address:</b> Karachi, Pakistan</p>
-
-</section>
-
-<!-- Footer -->
-
-<footer>
-
-<p>© 2026 Fariha's Bakery | All Rights Reserved</p>
-
-</footer>
-
-<script src="script.js"></script>
+</script>
 
 </body>
 </html>
-<style>
-    *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-background:#fff8fb;
-color:#333;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:#fff;
-position:sticky;
-top:0;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
-z-index:100;
-}
-
-.logo{
-font-size:28px;
-font-weight:bold;
-color:#ff1493;
-}
-
-nav a{
-text-decoration:none;
-color:#333;
-margin:0 15px;
-font-weight:500;
-transition:.3s;
-}
-
-nav a:hover{
-color:#ff1493;
-}
-
-.cart{
-font-size:24px;
-position:relative;
-cursor:pointer;
-}
-
-#count{
-position:absolute;
-top:-10px;
-right:-12px;
-background:#ff1493;
-color:#fff;
-width:20px;
-height:20px;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:12px;
-}
-
-.hero{
-height:90vh;
-background:url("https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1600&q=80") center/cover;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
-
-.hero-content{
-background:rgba(0,0,0,.5);
-padding:40px;
-border-radius:15px;
-color:#fff;
-}
-
-.hero h1{
-font-size:55px;
-}
-
-.hero p{
-margin:20px 0;
-font-size:18px;
-}
-
-.btn{
-background:#ff1493;
-color:white;
-padding:12px 30px;
-text-decoration:none;
-border-radius:30px;
-}
-
-.menu,
-.about,
-.contact{
-padding:70px 8%;
-text-align:center;
-}
-
-.menu h2,
-.about h2,
-.contact h2{
-font-size:40px;
-color:#ff1493;
-margin-bottom:30px;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.card{
-background:#fff;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,.15);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
-
-.card h3,
-.card p,
-.card h4{
-padding:12px;
-}
-
-.card h4{
-color:#ff1493;
-}
-
-.card button{
-margin-bottom:20px;
-padding:10px 20px;
-border:none;
-background:#ff1493;
-color:white;
-border-radius:25px;
-cursor:pointer;
-}
-
-.contact p{
-margin:12px 0;
-font-size:18px;
-}
-
-footer{
-background:#ff1493;
-color:#fff;
-text-align:center;
-padding:20px;
-}
-
-@media(max-width:768px){
-
-header{
-flex-direction:column;
-}
-
-nav{
-margin:15px 0;
-}
-
-nav a{
-display:block;
-margin:10px;
-}
-
-.hero h1{
-font-size:35px;
-}
-
-.cards{
-grid-template-columns:1fr;
-}
-
-}
-</style>
-<script>
-    // Cart Counter
-let cartCount = 0;
-
-function addToCart() {
-    cartCount++;
-
-    document.getElementById("count").innerText = cartCount;
-
-    alert("✅ Item added to cart!");
-}
-
-// Smooth animation on page load
-window.onload = function () {
-    document.body.style.opacity = "1";
-};
-
-// Highlight menu on scroll
-window.addEventListener("scroll", function () {
-    const header = document.querySelector("header");
-
-    if (window.scrollY > 50) {
-        header.style.background = "#fff";
-        header.style.boxShadow = "0 5px 15px rgba(0,0,0,0.15)";
-    } else {
-        header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
-    }
-});
-
-// Order button message
-const orderBtn = document.querySelector(".btn");
-
-orderBtn.addEventListener("click", function () {
-    alert("🍰 Welcome to Fariha's Bakery! Explore our delicious treats.");
-});
-</script>
